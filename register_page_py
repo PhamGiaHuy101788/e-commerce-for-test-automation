@@ -1,0 +1,24 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+class RegisterPage:
+    def __init__(self, driver: WebDriver):
+        self.driver = driver
+        self.email = (By.XPATH, "//input[@name='email']")
+        self.password = (By.XPATH, "//input[@name='password']")
+        self.confirm_password = (By.XPATH, "//input[@name='confirmPassword']")
+        self.register_button = (By.XPATH, "//button[@type='submit']")
+
+    def enter_email(self, email):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.email)).send_keys(email)
+
+    def enter_password(self, password):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.password)).send_keys(password)
+
+    def enter_confirm_password(self, confirm_password):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.confirm_password)).send_keys(confirm_password)
+
+    def click_register(self):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.register_button)).click()
